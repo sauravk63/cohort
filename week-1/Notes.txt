@@ -1,0 +1,27 @@
+JavaScript Foundation
+------------------------------
+
+compiled languages:
+
+---> compilers convert high level code(s) into 0's and 1's which can go into your machine and run.
+---> first need to complile and then run
+---> usually don't compile if there's an error in the code
+    eg:C, C++, Java, Rust, Golang
+
+
+Interpreted languages:
+
+---> No need to compile
+---> Interprets line by line
+---> Can run partially if the error comes later
+    eg: Python, JS
+
+strict mode - cannot change datatype in the middle of the code
+dynamic mode - can change the variable type. later TypeScript came into the picture
+
+single threaded nature of JS:
+
+can use only one core at a time
+difficult to make scalable systems 
+multithreading can be achieved
+interprets one line at a time
