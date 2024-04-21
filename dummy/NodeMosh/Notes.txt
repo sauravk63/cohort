@@ -1,0 +1,19 @@
+Node is js-runtime env
+coded in c++ language
+Uses Asynchronous nature(non-blocking)
+Highly scalable
+I/O-intensive - read file, n/w
+CPU intensive - programs that require a significant amount of computational resources to function effectively.
+
+
+
+In client-side JS, when we add a var. func. it is added to global scope.
+
+
+module wrapper function
+
+Node doesn't compile the func directly, it wraps the code inside a func, known as MWF.
+
+EVENT:
+
+A Signal that something has hpnd

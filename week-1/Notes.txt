@@ -25,3 +25,17 @@ can use only one core at a time
 difficult to make scalable systems 
 multithreading can be achieved
 interprets one line at a time
+
+
+Callback fuunctions:
+------------------
+a func can be paased as an argument 
+to overcome the flaw DRY(Don't repeat yourself)
+
+ECMAScript:
+-------------------
+JS conforms
+It is the most widely known and used implementation of ECMAScript
+ECMAScript only introduces Date, functions, let, var, const
+JS goes beyond ECMAScript - setTimeout, fs.readFile -> Browser introduced sth called as WebApi, to use on top of ECMAScript
+  
