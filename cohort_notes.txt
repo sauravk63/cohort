@@ -1,0 +1,33 @@
+session5:
+------------
+
+useEffect is triggered when the page is loaded first.
+
+useEffect is triggered for any change in state in the UI.
+
+condition:
+
+when the state/props changes
+
+passing an arg, an empty array, only gets triggered once
+
+passing an element, dependency, only gets triggered whn that element is changed.
+
+a function which is returned from other function will have the entire env of the other func.
+
+function outFunc(){
+let a;
+func insFunc(){
+a=9;
+console.log('a :: '. a);
+}
+return insFunc;
+}
+
+const newFunc = outFunc();
+newFunc(); 
+//output = a :: 9
+
+
+session6:
+------------
