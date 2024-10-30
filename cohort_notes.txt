@@ -30,4 +30,13 @@ newFunc();
 
 
 session6:
-------------
+-----------
+side effects : doing a BE call, using a time interval, data fetching, manually changing the DOM in RC.
+
+useMemo : memoization is a technique in DP where we use s
+
+useCallback : memoizing the function
+
+useEffect doesn't return anything, whereas useMemo does
+
+
