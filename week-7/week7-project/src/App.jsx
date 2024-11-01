@@ -1,8 +1,10 @@
-import React, { useState, Suspense } from 'react'
+import React, { useState, Suspense, useContext } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import { CountContext } from './context'
 
 import './App.css'
+import { useRecoilState, useRecoilValue, RecoilRoot, useSetRecoilState } from 'recoil'
+import { countAtom } from './store/atoms/count'
 const Landing = React.lazy(()=> import('./components/Landing'))
 const Dashboard = React.lazy(()=> import('./components/Dashboard'))
 const Random = React.lazy(()=> import('./components/Random'))
@@ -52,42 +54,119 @@ const Random = React.lazy(()=> import('./components/Random'))
 //   )
 // }
 
+// Using COntextAPI
+
+// function App(){
+//   const [count, setCount] = useState(0)
+//   return (
+//     <div>
+//       <CountContext.Provider value={count}>
+//         <Count setCount={setCount}/>
+//       </ CountContext.Provider >
+//     </div>
+//   )
+// }
+
+// function Count({setCount}){
+// return(
+//   <div>
+//     <CountRenderer />
+//     <Button setCount={setCount} />
+//   </div>
+// )
+// }
+
+// function CountRenderer(){
+
+//   const count = useContext(CountContext)
+//   return (
+//     <div>
+//       {count}
+//     </div>
+//   )
+// }
+
+// function Button({setCount}){
+
+//   const count = useContext(CountContext)
+//   return(
+//     <div>
+//   <button onClick={()=>{
+//     setCount(count+1)
+//   }}>Increase</button>
+//   <button onClick={()=>{
+//     setCount(count - 1)
+
+//   }}>Decrease</button>
+//     </div>
+//   )
+  
+
+
+// }
+
 function App(){
-  const [count, setCount] = useState(0)
   return (
     <div>
-      <CountContext.Provider value={count} >
-      <Count count={count}/>
-      <CountContext.Provider />
-
+      <RecoilRoot>
+        <Count />
+      </RecoilRoot>
     </div>
   )
 }
 
-function Count({count}){
+function Count(){
+  console.log('hello rerender');
+  
 return(
   <div>
-    {count}
-    <Button count={count} setCount={setCount} />
+    <CountRenderer />
+    
+    <Button />
+    <EvenCaption />
   </div>
 )
 }
 
-function Button({count, setCount}){
-  return(
-    <div>
-  <button onClick={()=>{
-    setCount(count+1)
-  }}>Increase</button>
-  <button onClick={()=>{
-    setCount(count - 1)
+function CountRenderer(){
+  const count = useRecoilValue(countAtom)
 
-  }}>Decrease</button>
+  return (
+    <div>
+      <b>
+      {count}
+      </b>
     </div>
   )
+}
+
+function Button(){
+
+  const setCount = useSetRecoilState(countAtom);
+
+  return(
+    <div>
+
+  <button onClick={()=>{
+    setCount(count => count+1)
+  }}>Increase</button>
   
+  <button onClick={()=>{
+    setCount(count => count - 1)
+  }}>Decrease</button>
 
+    </div>
+  )
+}
 
+function EvenCaption(){
+  const count = useRecoilValue(countAtom);
+  return (
+    (count%2==0) && 
+    <div>
+      It is Even
+    </div>
+  )
 }
 
 export default App
