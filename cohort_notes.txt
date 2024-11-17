@@ -37,6 +37,51 @@ useMemo : memoization is a technique in DP where we use s
 
 useCallback : memoizing the function
 
-useEffect doesn't return anything, whereas useMemo does
+useEffect doesn't return anything, whereas useMemo does. It runs only after page has completely rendered.
+return in useEffect runs as a cleanup func. but it also runs before running the useEffect again.
 
+
+session 7 :
+---------------
+
+single page app : no hard reload of the page
+client-side routing
+
+previously : anytime you chage the page, you get a new index.html,index.js
+
+client-side bundle : bundle that we get from BE. Essentially JS.
+
+client-side routing : ../messages, .../reports, .../new/user/profile
+
+useNavigate() may be used only in the context of a <Router> component.
+
+Lazy loading is a technique used to defer the loading of non-critical resources (like images or scripts) until they are needed, typically when they come into the viewport as the user scrolls. This optimizes page load times and reduces bandwidth usage, especially on pages with many images or other resource-heavy content.
+
+Suspense API is asynchronous operation (landing page is not available, until then what will it do?)
+
+{fallback} - squint your eyes to see it on the webpage.
+
+prop drilling, contextAPI
+
+By using contextAPI we don't have to pass the props as a parameter for every component reaching far ahead
+
+CreateContext() -> to create context
+
+3 imp points to use context API :
+i) create/define context
+ii) provide context
+iii) use context
+
+why we use contextAPI :
+1) To make rendering more performant - NO
+2) To make syntax clearer/get rid of prop drilling - YES
+
+Good framework to keep in mind:
+1) state and components should be defined in two separate places
+
+Recoil (has sth called Atom) - state management lib.
+
+Recoil will only work if the component using Recoil is wrapped inside RecoilRoot
+
+useSetRecoilState -> when we only need to update the func
 
