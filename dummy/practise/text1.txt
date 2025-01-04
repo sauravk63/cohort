@@ -1,7 +1,3 @@
-hello this is a test file.
-
-and this is a new line!
-
-updates from new branch
-
+hello this is a test file
+Added text from hotfic branch
 
