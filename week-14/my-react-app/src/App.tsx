@@ -1,36 +1,44 @@
-import { useEffect, useState } from 'react'
-
-import './App.css'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import './App.css';
+import axios from 'axios';
 
 function App() {
-
   const [loader, setLoader] = useState(true);
-  const [userDetails, setUserDetails] = useState({title:"", description:""});
-  useEffect(()=>{
-    const resp = axios.get('https://my-app.nobodyhasitall.workers.dev/')
-    
-    setUserDetails(resp.data.json());
-    console.log('Hello');
-    
-    setLoader(false);
-  })
+  const [userDetails, setUserDetails] = useState({ title: "", description: "" });
 
-  if(loader){
+  useEffect(() => {
+    // Function to fetch user details
+    const fetchUserDetails = async () => {
+      try {
+        const resp = await axios.get('https://my-app.nobodyhasitall.workers.dev/');
+        setUserDetails(resp.data); // Assuming the API returns the object with title and description
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Optionally, you can update state to show an error to the user
+        // setUserDetails({ title: "Error", description: "Failed to load user details" });
+      } finally {
+        setLoader(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  if (loader) {
     return (
       <div>Still Loading</div>
-    )
+    );
   }
 
   return (
     <>
-    <div>
-      {userDetails}
-      title : {userDetails?.title}
-      description : {userDetails?.description}
-    </div>
+      <div>
+        title : {userDetails.title}
+        <br />
+        description : {userDetails.description}
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
