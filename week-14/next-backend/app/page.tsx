@@ -2,8 +2,8 @@ import axios from "axios";
 
 async function getUserDetails() {
 
-  const resp = await axios.get('https://my-app.nobodyhasitall.workers.dev/')
-  
+  await new Promise((r)=>{setTimeout(r, 2500)});
+  const resp = await axios.get('http://localhost:3000/api/user')
   return resp.data;
   
 }
@@ -11,11 +11,14 @@ async function getUserDetails() {
 export default async function Home() {
 
   const userDetails = await getUserDetails();
+  
   return (
     <>
-    <div>NextJS backend</div>
-    <p>{userDetails.title}</p>
-    <p>{userDetails.description}</p>
+      <div>NextJS backend</div>
+      <div className="border p-4 rounded">
+      <p>{userDetails.name}</p>
+      <p>{userDetails.email}</p>
+      </div>
     </>
   );
 }
