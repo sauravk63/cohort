@@ -4,14 +4,18 @@ import axios from 'axios';
 
 function App() {
   const [loader, setLoader] = useState(true);
-  const [userDetails, setUserDetails] = useState({ title: "", description: "" });
+  const [userDetails, setUserDetails] = useState({
+    title : "",
+    description : ""
+  });
 
   useEffect(() => {
     // Function to fetch user details
     const fetchUserDetails = async () => {
       try {
-        const resp = await axios.get('https://my-app.nobodyhasitall.workers.dev/');
+        const resp = await axios.get('https://my-app.nobodyhasitall.workers.dev/',{ withCredentials: true });
         setUserDetails(resp.data); // Assuming the API returns the object with title and description
+        
       } catch (error) {
         console.error('Error fetching data:', error);
         // Optionally, you can update state to show an error to the user
@@ -20,7 +24,7 @@ function App() {
         setLoader(false);
       }
     };
-
+    
     fetchUserDetails();
   }, []); // Empty dependency array means this effect runs once on mount
 
@@ -29,7 +33,7 @@ function App() {
       <div>Still Loading</div>
     );
   }
-
+  
   return (
     <>
       <div>
@@ -39,6 +43,7 @@ function App() {
       </div>
     </>
   );
+  console.log(userDetails);
 }
 
 export default App;
