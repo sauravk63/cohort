@@ -1,3 +1,28 @@
+Express Notes:
+-----------------
+app.use(express.json()) -> used to parse json from body
+Global catches/ Error-handling messages : gives you better error messages, takes 4 arguments
+
+Hashing(one-way) : converting a string into some complicated gibberish.
+Encryption(two-way) : given the input, can be converted to gibberish and vice versa till you have the pswd.
+JWT(JSON Web Token) : It is neither hashing nor encryption(it is like a digital signature). Anyone can see the output given the signature but needs a pswd to verify it.
+Converts a json to a string. user needs it for each time authentication for accessing the pages. Google/FB/Insta uses it.
+verify.encode(Bearer eyHYSFhwhwgw1212bnhb2...)
+
+dXIxTdA91q93KXBF
+
+mongodb+srv://nobodyhasitall:<db_password>@cluster0.fugtt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+
+React Notes(hkirat_tw):
+-----------------
+
+Component - How a DOM element should render, given a state. It is a re-usable, Dynamic, HTML Snippet that changes given the state.
+
+
+
+
+
 session5:
 ------------
 
@@ -84,4 +109,203 @@ Recoil (has sth called Atom) - state management lib.
 Recoil will only work if the component using Recoil is wrapped inside RecoilRoot
 
 useSetRecoilState -> when we only need to update the func
+
+session6:
+-----------
+side effects : doing a BE call, using a time interval, data fetching, manually changing the DOM in RC.
+
+useMemo : memoization is a technique in DP where we use s
+
+useCallback : memoizing the function
+
+useEffect doesn't return anything, whereas useMemo does. It runs only after page has completely rendered.
+return in useEffect runs as a cleanup func. but it also runs before running the useEffect again.
+
+
+session 7 :
+---------------
+
+single page app : no hard reload of the page
+client-side routing
+
+previously : anytime you change the page, you get a new index.html,index.js
+
+client-side bundle : bundle that we get from BE. Essentially JS.
+
+client-side routing : ../messages, .../reports, .../new/user/profile
+
+useNavigate() may be used only in the context of a <Router> component.
+
+Lazy loading is a technique used to defer the loading of non-critical resources (like images or scripts) until they are needed, typically when they come into the viewport as the user scrolls. This optimizes page load times and reduces bandwidth usage, especially on pages with many images or other resource-heavy content.
+
+Suspense API is asynchronous operation (landing page is not available, until then what will it do?)
+
+{fallback} - squint your eyes to see it on the webpage.
+
+prop drilling, contextAPI
+
+By using contextAPI we don't have to pass the props as a parameter for every component reaching far ahead
+
+CreateContext() -> to create context
+
+3 imp points to use context API :
+i) create/define context
+ii) provide context
+iii) use context
+
+why we use contextAPI :
+1) To make rendering more performant - NO
+2) To make syntax clearer/get rid of prop drilling - YES
+
+Good framework to keep in mind:
+1) state and components should be defined in two separate places
+
+Recoil (has sth called Atom) - state management lib.
+
+Recoil will only work if the component using Recoil is wrapped inside RecoilRoot
+
+useSetRecoilState -> when we only need to update the func
+
+selector is something which can be derived from other atoms
+
+selectors can be used to incorporate async data into Recoil data-flow graph
+
+
+Advance :
+--------------
+
+Atoms work when you know you have to put only one thing on screen
+
+cannot do simple asynchronous backend call in default, we need to use selector
+
+useRecoilValueLoadable
+
+useRecoilStateLoadable
+
+
+session 8 :
+----------------
+
+display : flex -> to place components next to each other
+
+
+
+week 9 :
+-----------------
+npx -> lets you run a package without even installing it
+
+zod -> runtime validations
+
+diff between type and interface ✔️✔️
+
+Generics for creating multiple variations of your func.
+
+app.use(authMiddleware) => to use authentication on every request
+
+
+
+week-10:
+-------------
+Prisma 
+
+- Intuitive model
+- Automated migrations
+- Type safety
+- Autocomplete
+
+
+for local PostgreSQL:
+url :"postgresql://postgres:<password>@localhost:5432/postgres"
+
+week 12 :
+------------------
+Amazon S3
+Object stores(storage) -> CDNs(cloudfronts)(distribution)
+Source of truth ->Point of presence
+
+Adv typescript:
+------------
+
+Pick, Partial
+zod inference
+
+
+week-13:
+----------------
+
+hono is a framework, much like express
+
+Hono is a lightweight, ultrafast web framework built on Web Standards. It's designed to work across multiple JavaScript runtimes including Cloudflare Workers, Fastly Compute, Deno, Bun, Vercel, AWS Lambda, and Node.js. Hono is noted for its speed, simplicity, and small size, with the hono/tiny preset being under 14kB. It supports various middleware and has been praised for its clean APIs and TypeScript support
+
+
+
+
+app.get('/api/v1/blog?:id', (c) => {
+
+  const id = c.req.param("id");
+  console.log(id);
+  return c.text(`get blog for id : ${id}`)}
+)
+
+
+c -> context
+
+
+
+we cannot have multiple connections to database, so we need to have a connection pool
+
+
+even for failed insertions postgres will generate an autoincremented id
+
+CLI will pick prisma commands from .env files
+Backend will pick from wrangler.toml file
+
+anytime a server crashes, hono returns a 500 status code
+
+
+Week-14:
+-------------
+
+React is not SEO optimized
+
+
+
+upsides of nextjs:
+
+File based routing
+SSR - html is generated in server itself
+
+downsides of nextjs:
+
+code cannot be moved to CDN
+opiniated, hard to move out of it.
+
+folder name (auth) -> to bypass all auth routes
+
+"use client"
+
+client components couldn't be kept in a server component
+eg: useState, useEffect, button handler etc
+
+
+Week-19:
+---------------
+Redis, WebSockets, Pub Subs and MQ Bootcamp:
+----------------------------------------
+
+
+http server - non-persistent connection b/w browser n server
+
+websocket - persistent connection b/w B n S(for tracking ticker prices)
+
+http module comes bundled with node js
+
+adv. of express over http : routing, middlewares, ecosystem
+
+WebSocket is native to browser, just like fetch()
+
+Redis is used to cache data coming from database to minimize database req.
+
+
+
 
