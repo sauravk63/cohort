@@ -13,7 +13,7 @@ const app = new Hono<{
 }>()
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.text('Medium blog Home page!')
 })
 
 app.use('/*', cors())
