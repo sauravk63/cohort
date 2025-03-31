@@ -2,18 +2,43 @@ const express = require('express');
 
 const app = express();
 
+
 let requestCount = 0;
 
 
 function requestHandler(req, res, next){
+    console.log('Method : ', req.method);
+    console.log('Hostname : ', req.hostname);
+    console.log('URL : ', req.url);
     requestCount++;
-    console.log(requestCount);  
     next();  
 }
 
+app.get('/admin', (req, res)=>{
+    res.send({
+        msg : 'Total request count is :' + requestCount
+    })
+})
 
+app.use(requestHandler);
 
-app.get('/sum', requestHandler, (req, res)=>{
+app.post('/div', (req, res)=>{
+    const a = parseInt(req.headers.a);
+    const b = parseInt(req.headers.b);
+    res.send({
+        ans : a + b
+    })
+})
+
+app.get('/sum', sumRequestHandler);
+
+app.get('/sub', subRequestHandler);
+
+app.get('/mul', mulRequestHandler);
+
+app.get('/div', divRequestHandler);
+
+function sumRequestHandler(req, res){
 
     const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
@@ -23,9 +48,9 @@ app.get('/sum', requestHandler, (req, res)=>{
         requestCount:requestCount
     })
 
-})
+}
 
-app.get('/sub', requestHandler, (req, res)=>{
+function subRequestHandler(req, res){
     
     const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
@@ -34,9 +59,9 @@ app.get('/sub', requestHandler, (req, res)=>{
         ans : a - b,
         requestCount : requestCount
     })
-})
+}
 
-app.get('/mul', requestHandler, (req, res)=>{
+function mulRequestHandler(req, res){
     
     const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
@@ -45,9 +70,9 @@ app.get('/mul', requestHandler, (req, res)=>{
         ans : a * b,
         requestCount: requestCount
     })
-})
+}
 
-app.get('/div', requestHandler, (req, res)=>{
+function divRequestHandler(req, res){
     
     const a = parseInt(req.query.a);
     const b = parseInt(req.query.b);
@@ -56,7 +81,7 @@ app.get('/div', requestHandler, (req, res)=>{
         ans : (a / b).toFixed(3),
         requestCount:requestCount
     })
-})
+}
 
 app.get('*', (req, res)=>{
     res.send({

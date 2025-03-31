@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Example</title>
+</head>
+<body>
+    <button id="btn">
+        Fetch data
+    </button>
+    <script>
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click',()=>{
+            const resp = fetch('http://127.0.0.1:4004/div?a=10&b=3', {
+                method : 'post'
+            })
+            const data = resp
+            console.log(data);
+        })
+    </script>
+</body>
+</html>
