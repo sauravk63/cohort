@@ -4,11 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fetch Example</title>
+    <style>
+
+        .rot-360{
+            top: 800px;
+        }
+
+        .rot-360:hover{
+            
+            animation: rotate-scale 4s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes rotate-scale {
+            0%{
+                transform: rotate(0deg) scale(4);
+            }
+            30%{
+                transform: rotate(108deg) scale(6);
+            }
+            80%{
+                transform: rotate(240deg) scale(5);
+            }
+            100%{
+                transform: rotate(360deg) scale(4);
+            }
+        }
+
+
+        #btn2{
+            padding: 5px;
+            font-weight: 600;
+            position: absolute;
+            top: 200px;
+            background-color: rgb(178, 32, 191);
+            border: 3px solid rgb(10, 165, 231);
+            color: aliceblue;
+            border-radius: 64px;
+
+            /* transition-property: transform;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in;
+            transition-delay: 0; */
+
+            transition: all 0.3s ease-in;
+        }
+
+        #btn2:hover{
+            transform: translateY(10px);
+            background-color: rgb(118, 255, 33);
+            color: rgb(3, 3, 3);
+            border: 10px solid rgb(240, 39, 240);
+        }
+
+        #popup{
+            position: absolute;
+            top: 100px;
+            background-color: black;
+            color: aliceblue;
+            animation : slide 0.25s ease-out;
+        }
+        @keyframes slide {
+            from {
+                transform: translateY(-100px);
+            }
+        }
+    </style>
 </head>
 <body>
     <button id="btn">
         Fetch data
     </button>
+    <button popovertarget="popup">
+        Popup
+    </button>
+
+    <div id="popup" popover>
+        Popup is opened
+        <button popovertarget="popup" popovertargetaction="hide">Close</button>
+    </div>
+
+    <center>
+        <h4 class="rot-360">🚢✈️🌍🖼️🚢</h4>
+    </center>
+
+    <button id="btn2">
+        Learn More
+    </button>
+
     <script>
         const btn = document.getElementById('btn');
         btn.addEventListener('click',()=>{
