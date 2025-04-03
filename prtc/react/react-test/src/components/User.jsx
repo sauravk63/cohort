@@ -17,10 +17,10 @@ const User = () => {
     console.log('LOADING :: ', isLoading);
     console.log('ERROR :: ', isError);
 
-    if(!data) return <h2>Loading....</h2>
+    if(isLoading) return <h2>Loading....</h2>
     return (
         <div>
-            {data.data}
+            {data.data.users.map((item, id)=>(<li key={id}>{item.firstName}</li>))}
         </div>
     )
 }
