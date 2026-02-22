@@ -1,24 +1,15 @@
-console.time('starting');
-
-
 const fs = require('fs');
-const { start } = require('repl');
 
-console.time('file read');
+function print(err, data){
+    console.log(data);
+}
 
-fs.readFile('textFile.txt', 'utf-8', (error, content)=>{
-        console.log(content);        
-    })
+fs.readFile('textFile.txt', 'utf-8', print);
 
-console.timeEnd('file read');
+fs.readFile('b.txt', 'utf-8', print);
 
-console.time('file read sync');
+setTimeout(() => {
+    console.log('This is setTimeout');
+}, 0);
 
-fs.readFile('b.txt', 'utf-8', ( error, content) => {
-    console.log(content);
-})
-
-console.timeEnd('file read sync');
-
-console.timeEnd('starting');
 
