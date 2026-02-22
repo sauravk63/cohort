@@ -10,4 +10,12 @@ const printNumbers = (num) => {
     }
 }
 
-allNumbers();
+function runInfiniteLoop(){
+    while(true){
+        console.log('infinite loop');
+    }
+    }
+// runInfiniteLoop()
+// allNumbers();
+
+console.log(process.argv[3]);
